@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:sofa="http://sofastack.io/schema/sofaboot"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://sofastack.io/schema/sofaboot   http://sofastack.io/schema/sofaboot.xsd"
+       default-autowire="byName">
+    <!--服务端引用服务 -->
+    <bean id="helloSyncServiceImpl" class="com.htn.sofarpc.service.impl.HelloSyncServiceImpl"/>
+    <sofa:service ref="helloSyncServiceImpl" interface="com.htn.sofarpc.service.HelloSyncService">
+        <sofa:binding.bolt/>
+    </sofa:service>
+
+    <!--客户端引用服务 -->
+    <sofa:reference id="helloSyncServiceReference" interface="com.htn.sofarpc.service.HelloSyncService">
+        <sofa:binding.bolt/>
+    </sofa:reference>
+</beans>
